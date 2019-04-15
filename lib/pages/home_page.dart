@@ -5,6 +5,7 @@ import './SidebarPage.dart';  //侧边栏
 import './TopTabPages/TopTabPage_1.dart';
 import './TopTabPages/TopTabPage_2.dart';
 import './TopTabPages/TopTabPage_3.dart';
+import './search.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,17 +14,6 @@ class HomePage extends StatefulWidget {
 
 //用于使用到了一点点的动画效果，因此加入了SingleTickerProviderStateMixin
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
-
-  //定义APP标题变量
-  // String title;
-
-  // changeTilte(String t){
-  //   setState((){
-  //     title = t;
-  //   });
-  // }
-
-  //定义底部导航项目
   final List<Tab> _bottomTabs = <Tab>[
     new Tab(text: '主页',icon: new Icon(Icons.home),),    //icon和text的显示顺序已经内定，如需自定义，到child属性里面加吧
     new Tab(icon: new Icon(Icons.add),text: '发布',),
@@ -56,6 +46,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           appBar: new AppBar(
             backgroundColor: Colors.green,
             title: new Text('东林圈'),
+            actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () =>
+                  showSearch(context: context, delegate: SearchBarDelegate())),
+        ],
           ),   //头部的标题AppBar
           drawer: new Drawer(     //侧边栏按钮Drawer
             child: new ListView(
@@ -129,7 +125,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               controller: _bottomNavigation,
               children:  [      //注意顺序与TabBar保持一直
                 new News(data: '参数值'),
-                new TabPage2(),
+                new TabPage22(),
                 new TabPage3(),
               ]
             ),
@@ -145,3 +141,4 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     );
   }
 }
+
